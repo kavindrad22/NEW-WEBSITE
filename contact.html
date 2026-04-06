@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taprobane Lager | High-End Excellence</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { gold: { DEFAULT: '#D4AF37' }, dark: { bg: '#0a0a0a', surface: '#111111' } }, fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Playfair Display', 'serif'] } } } };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body class="bg-dark-bg text-gray-200 font-sans antialiased overflow-x-hidden selection:bg-gold selection:text-black leading-relaxed">
+    <nav class="fixed w-full z-50 transition-all duration-300 py-6 px-6 md:px-12" id="navbar">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-heading font-bold text-white tracking-widest flex items-center gap-2 drop-shadow-md"><span class="text-gold">TAPROBANE</span> LAGER</a>
+            <div class="hidden md:flex items-center space-x-10">
+                <a href="index.html" class="text-xs font-semibold tracking-[0.15em] uppercase hover:text-gold transition-colors">Home</a>
+                <a href="products.html" class="text-xs font-semibold tracking-[0.15em] uppercase hover:text-gold transition-colors">The Beer</a>
+                <a href="about.html" class="text-xs font-semibold tracking-[0.15em] uppercase hover:text-gold transition-colors">Our Story</a>
+                <a href="contact.html" class="text-xs font-semibold tracking-[0.15em] text-gold uppercase hover:text-gold transition-colors">Contact</a>
+                <a href="products.html" class="px-6 py-2.5 border border-gold text-gold hover:bg-gold hover:text-black transition-all duration-500 uppercase text-xs font-bold tracking-[0.15em] backdrop-blur-sm">Order Now</a>
+            </div>
+        </div>
+    </nav>
+    <main class="min-h-screen">
+        <section class="pt-40 pb-20 bg-dark-bg min-h-screen relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] z-0"></div>
+            <div class="max-w-7xl mx-auto px-6 relative z-10">
+                <div class="text-center max-w-3xl mx-auto mb-20 gs-reveal">
+                    <h3 class="text-gold tracking-[0.2em] uppercase text-xs mb-4 font-semibold">Connect</h3>
+                    <h1 class="text-5xl md:text-7xl font-heading font-bold mb-8 text-white">Get in <span class="text-gold italic font-normal">Touch</span></h1>
+                    <div class="w-24 h-[1px] bg-gold mx-auto mb-8"></div>
+                    <p class="text-gray-400 font-light text-lg">Interested in stocking Taprobane Lager, or simply want to say hello? We'd love to hear from you.</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-16">
+                    <div class="lg:col-span-2 gs-reveal space-y-16 pt-8 text-center lg:text-left border-r-0 lg:border-r border-white/5 pr-0 lg:pr-10">
+                        <div>
+                            <h3 class="text-xs uppercase tracking-[0.2em] text-gold font-semibold mb-4">Brewery & Headquarters</h3>
+                            <p class="text-white font-heading text-2xl">Alberta, Canada</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xs uppercase tracking-[0.2em] text-gold font-semibold mb-4">Contact Details</h3>
+                            <a href="mailto:taprobanelager@gmail.com" class="block text-gray-300 hover:text-white transition-colors mb-2 text-lg">taprobanelager@gmail.com</a>
+                            <a href="tel:+13682999558" class="block text-gray-300 hover:text-white transition-colors text-lg">+1 (368) 299-9558</a>
+                        </div>
+                        <div class="mt-12 hidden lg:block relative group">
+                            <div class="absolute -inset-2 border border-gold/10 z-0 transform translate-x-2 translate-y-2 group-hover:translate-x-3 group-hover:translate-y-3 transition-transform duration-500"></div>
+                            <img src="static/images/cans_bar.jpg" alt="Taprobane Lager" class="relative z-10 w-full max-w-[320px] h-auto object-cover rounded-sm shadow-xl grayscale-[0.2] hover:grayscale-0 transition-all duration-500 mx-auto lg:mx-0">
+                        </div>
+                    </div>
+                    <div class="lg:col-span-3 bg-dark-surface p-10 md:p-14 border border-white/5 relative gs-reveal shadow-2xl">
+                        <div class="absolute top-0 left-0 w-8 h-8 border-t border-l border-gold"></div>
+                        <div class="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-gold"></div>
+                        <h3 class="text-2xl font-heading text-white mb-10">Send a Message</h3>
+                        <form class="space-y-8">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div>
+                                    <label class="block text-[10px] uppercase tracking-[0.2em] text-gray-500 mb-3 font-semibold">Name</label>
+                                    <input type="text" class="w-full bg-dark-bg/50 border border-white/10 text-white px-5 py-4 focus:outline-none focus:border-gold/50 focus:bg-dark-bg transition-all duration-300" placeholder="Your Name">
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] uppercase tracking-[0.2em] text-gray-500 mb-3 font-semibold">Email</label>
+                                    <input type="email" class="w-full bg-dark-bg/50 border border-white/10 text-white px-5 py-4 focus:outline-none focus:border-gold/50 focus:bg-dark-bg transition-all duration-300" placeholder="your@email.com">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-[10px] uppercase tracking-[0.2em] text-gray-500 mb-3 font-semibold">Message</label>
+                                <textarea rows="5" class="w-full bg-dark-bg/50 border border-white/10 text-white px-5 py-4 focus:outline-none focus:border-gold/50 focus:bg-dark-bg transition-all duration-300 resize-none" placeholder="How can we help?"></textarea>
+                            </div>
+                            <button type="button" class="w-full bg-transparent border border-gold text-gold py-5 text-xs font-bold uppercase tracking-[0.2em] hover:bg-gold hover:text-black transition-all duration-500">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="static/js/main.js"></script>
+</body>
+</html>
