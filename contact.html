@@ -1,84 +1,512 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taprobane Lager | High-End Excellence</title>
+    <title>Taprobane Lager | Contact Us — Reach Our Brewery in Alberta</title>
+    <meta name="description"
+        content="Get in touch with Taprobane Lager. Reach us for retail inquiries, partnerships, or simply to say hello. We're based in Alberta, Canada.">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = { theme: { extend: { colors: { gold: { DEFAULT: '#D4AF37' }, dark: { bg: '#0a0a0a', surface: '#111111' } }, fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Playfair Display', 'serif'] } } } };
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            DEFAULT: '#D4AF37',
+                            light: '#F3E5AB',
+                            dark: '#996515',
+                        },
+                        red: { brand: '#B91C1C' },
+                        dark: { bg: '#0a0a0a', surface: '#111111' }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        };
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="static/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
-<body class="bg-dark-bg text-gray-200 font-sans antialiased overflow-x-hidden selection:bg-gold selection:text-black leading-relaxed">
-    <nav class="fixed w-full z-50 transition-all duration-300 py-6 px-6 md:px-12" id="navbar">
+
+<body
+    class="bg-dark-bg text-gray-200 font-sans antialiased overflow-x-hidden selection:bg-gold selection:text-black leading-relaxed">
+
+    <!-- Noise Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 transition-all duration-300 py-6 px-6 md:px-12 bg-black/40 backdrop-blur-md border-b border-white/5"
+        id="navbar">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-heading font-bold text-white tracking-widest flex items-center gap-2 drop-shadow-md"><span class="text-gold">TAPROBANE</span> LAGER</a>
+            <a href="index.html"
+                class="text-2xl font-heading font-bold text-white tracking-widest flex items-center gap-2 drop-shadow-md">
+                <span class="text-gold">TAPROBANE</span> LAGER
+            </a>
+            <!-- Desktop Menu -->
             <div class="hidden md:flex items-center space-x-10">
-                <a href="index.html" class="text-xs font-semibold tracking-[0.15em] uppercase hover:text-gold transition-colors">Home</a>
-                <a href="products.html" class="text-xs font-semibold tracking-[0.15em] uppercase hover:text-gold transition-colors">The Beer</a>
-                <a href="about.html" class="text-xs font-semibold tracking-[0.15em] uppercase hover:text-gold transition-colors">Our Story</a>
-                <a href="contact.html" class="text-xs font-semibold tracking-[0.15em] text-gold uppercase hover:text-gold transition-colors">Contact</a>
-                <a href="products.html" class="px-6 py-2.5 border border-gold text-gold hover:bg-gold hover:text-black transition-all duration-500 uppercase text-xs font-bold tracking-[0.15em] backdrop-blur-sm">Order Now</a>
+                <a href="index.html"
+                    class="text-xs font-semibold tracking-[0.15em] uppercase hover:text-gold transition-colors">Home</a>
+                <a href="products.html"
+                    class="text-xs font-semibold tracking-[0.15em] uppercase hover:text-gold transition-colors">The
+                    Beer</a>
+                <a href="about.html"
+                    class="text-xs font-semibold tracking-[0.15em] uppercase hover:text-gold transition-colors">Our
+                    Story</a>
+                <a href="contact.html"
+                    class="text-xs font-semibold tracking-[0.15em] text-gold uppercase hover:text-gold transition-colors">Contact</a>
+                <a href="products.html"
+                    class="px-6 py-2.5 border border-gold text-gold hover:bg-gold hover:text-black hover:scale-105 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-300 ease-out uppercase text-xs font-bold tracking-[0.15em] backdrop-blur-sm rounded-sm btn-glow">Order
+                    Now</a>
             </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden absolute top-full left-0 w-full bg-dark-bg/95 backdrop-blur-md border-t border-gray-800 flex flex-col py-4 shadow-2xl transition-all duration-300">
+            <a href="index.html"
+                class="px-8 py-4 text-sm font-semibold tracking-widest uppercase hover:text-gold transition-colors border-b border-gray-800/50 text-center">Home</a>
+            <a href="products.html"
+                class="px-8 py-4 text-sm font-semibold tracking-widest uppercase hover:text-gold transition-colors border-b border-gray-800/50 text-center">The
+                Beer</a>
+            <a href="about.html"
+                class="px-8 py-4 text-sm font-semibold tracking-widest uppercase hover:text-gold transition-colors border-b border-gray-800/50 text-center">Our
+                Story</a>
+            <a href="contact.html"
+                class="px-8 py-4 text-sm font-semibold tracking-widest uppercase hover:text-gold transition-colors text-center">Contact</a>
         </div>
     </nav>
+
     <main class="min-h-screen">
         <section class="pt-40 pb-20 bg-dark-bg min-h-screen relative overflow-hidden">
-            <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] z-0"></div>
+            <div
+                class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] z-0">
+            </div>
             <div class="max-w-7xl mx-auto px-6 relative z-10">
                 <div class="text-center max-w-3xl mx-auto mb-20 gs-reveal">
                     <h3 class="text-gold tracking-[0.2em] uppercase text-xs mb-4 font-semibold">Connect</h3>
-                    <h1 class="text-5xl md:text-7xl font-heading font-bold mb-8 text-white">Get in <span class="text-gold italic font-normal">Touch</span></h1>
+                    <h1 class="text-5xl md:text-7xl font-heading font-bold mb-8 text-white">Get in <span
+                            class="text-gold italic font-normal">Touch</span></h1>
                     <div class="w-24 h-[1px] bg-gold mx-auto mb-8"></div>
-                    <p class="text-gray-400 font-light text-lg">Interested in stocking Taprobane Lager, or simply want to say hello? We'd love to hear from you.</p>
+                    <p class="text-gray-400 font-light text-lg">Interested in stocking Taprobane Lager, or simply want
+                        to say hello? We'd love to hear from you.</p>
                 </div>
                 <div class="grid grid-cols-1 lg:grid-cols-5 gap-16">
-                    <div class="lg:col-span-2 gs-reveal space-y-16 pt-8 text-center lg:text-left border-r-0 lg:border-r border-white/5 pr-0 lg:pr-10">
+                    <div
+                        class="lg:col-span-2 gs-reveal space-y-16 pt-8 text-center lg:text-left border-r-0 lg:border-r border-white/5 pr-0 lg:pr-10">
                         <div>
-                            <h3 class="text-xs uppercase tracking-[0.2em] text-gold font-semibold mb-4">Brewery & Headquarters</h3>
-                            <p class="text-white font-heading text-2xl">Alberta, Canada</p>
+                            <h3 class="text-xs uppercase tracking-[0.2em] text-gold font-semibold mb-4">
+                                Brewery &amp; Headquarters
+                            </h3>
+                            <div class="flex items-start gap-4 text-white">
+                                <span class="text-xl mt-1">📍</span>
+                                <div>
+                                    <p class="font-heading text-2xl mb-1">Rig Hand Distillery</p>
+                                    <p class="text-gray-400 font-light text-sm">Leduc County, Alberta, Canada</p>
+                                </div>
+                            </div>
                         </div>
                         <div>
                             <h3 class="text-xs uppercase tracking-[0.2em] text-gold font-semibold mb-4">Contact Details</h3>
-                            <a href="mailto:taprobanelager@gmail.com" class="block text-gray-300 hover:text-white transition-colors mb-2 text-lg">taprobanelager@gmail.com</a>
-                            <a href="tel:+13682999558" class="block text-gray-300 hover:text-white transition-colors text-lg">+1 (368) 299-9558</a>
+                            <div class="space-y-4">
+                                <a href="mailto:taprobanelager@gmail.com"
+                                    class="flex items-center gap-3 text-gray-300 hover:text-gold transition-colors text-lg group">
+                                    <svg class="w-5 h-5 text-gold group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                    </svg>
+                                    taprobanelager@gmail.com
+                                </a>
+                                <a href="https://wa.me/13682999558" target="_blank" rel="noopener noreferrer"
+                                    class="flex items-center gap-3 text-gray-300 hover:text-gold transition-colors text-lg group">
+                                    <svg class="w-5 h-5 text-gold group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.128.552 4.192 1.594 6.015L.135 23.864l5.962-1.564A12.006 12.006 0 0012.031 24c6.646 0 12.031-5.385 12.031-12.031S18.677 0 12.031 0zm3.896 17.51c-.177.568-1.026 1.062-1.557 1.135-.531.073-1.24.146-3.4-.646-2.585-.948-4.242-3.646-4.365-3.813-.123-.167-1.036-1.391-1.036-2.656 0-1.266.646-1.891.891-2.161.245-.271.531-.339.714-.339.182 0 .365 0 .521.01.167.01.385-.062.604.474.219.536.75 1.833.823 1.979.073.146.125.313.031.5-.094.188-.146.302-.292.474-.146.172-.302.359-.443.495-.156.146-.318.307-.146.604.172.297.771 1.286 1.667 2.083 1.161 1.036 2.135 1.344 2.427 1.484.292.141.464.12.635-.078.172-.198.745-.87.943-1.167.198-.297.396-.245.667-.141.271.104 1.724.818 2.021.964.297.146.495.219.568.339.073.12.073.693-.104 1.261z"/>
+                                    </svg>
+                                    +1 (368) 299-9558
+                                </a>
+                            </div>
                         </div>
                         <div class="mt-12 hidden lg:block relative group">
-                            <div class="absolute -inset-2 border border-gold/10 z-0 transform translate-x-2 translate-y-2 group-hover:translate-x-3 group-hover:translate-y-3 transition-transform duration-500"></div>
-                            <img src="static/images/cans_bar.jpg" alt="Taprobane Lager" class="relative z-10 w-full max-w-[320px] h-auto object-cover rounded-sm shadow-xl grayscale-[0.2] hover:grayscale-0 transition-all duration-500 mx-auto lg:mx-0">
+                            <div
+                                class="absolute -inset-2 border border-gold/10 z-0 transform translate-x-2 translate-y-2 group-hover:translate-x-3 group-hover:translate-y-3 transition-transform duration-500">
+                            </div>
+                            <img src="static/images/cans_bar.jpg" alt="Taprobane Lager"
+                                class="relative z-10 w-full max-w-[320px] h-auto object-cover rounded-sm shadow-xl grayscale-[0.2] hover:grayscale-0 transition-all duration-500 mx-auto lg:mx-0">
                         </div>
                     </div>
-                    <div class="lg:col-span-3 bg-dark-surface p-10 md:p-14 border border-white/5 relative gs-reveal shadow-2xl">
+                    <div
+                        class="lg:col-span-3 bg-dark-surface p-10 md:p-14 border border-white/5 relative gs-reveal shadow-2xl">
                         <div class="absolute top-0 left-0 w-8 h-8 border-t border-l border-gold"></div>
                         <div class="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-gold"></div>
                         <h3 class="text-2xl font-heading text-white mb-10">Send a Message</h3>
-                        <form class="space-y-8">
+
+                        <!-- Success Message (hidden by default) -->
+                        <div id="contact-success" class="hidden mb-8 p-6 border border-gold/40 bg-gold/5 text-center">
+                            <svg class="w-10 h-10 text-gold mx-auto mb-3" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <p class="text-white font-heading font-bold text-lg mb-1">Message Sent!</p>
+                            <p class="text-gray-400 text-sm font-light">Thank you for reaching out. We'll get back to
+                                you shortly.</p>
+                        </div>
+
+                        <form id="contact-form" class="space-y-8">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div>
-                                    <label class="block text-[10px] uppercase tracking-[0.2em] text-gray-500 mb-3 font-semibold">Name</label>
-                                    <input type="text" class="w-full bg-dark-bg/50 border border-white/10 text-white px-5 py-4 focus:outline-none focus:border-gold/50 focus:bg-dark-bg transition-all duration-300" placeholder="Your Name">
+                                    <label
+                                        class="block text-[10px] uppercase tracking-[0.2em] text-gray-500 mb-3 font-semibold">Name</label>
+                                    <input type="text" id="contact-name"
+                                        class="w-full bg-dark-bg/50 border border-white/10 text-white px-5 py-4 focus:outline-none focus:border-gold/50 focus:bg-dark-bg transition-all duration-300"
+                                        placeholder="Your Name">
                                 </div>
                                 <div>
-                                    <label class="block text-[10px] uppercase tracking-[0.2em] text-gray-500 mb-3 font-semibold">Email</label>
-                                    <input type="email" class="w-full bg-dark-bg/50 border border-white/10 text-white px-5 py-4 focus:outline-none focus:border-gold/50 focus:bg-dark-bg transition-all duration-300" placeholder="your@email.com">
+                                    <label
+                                        class="block text-[10px] uppercase tracking-[0.2em] text-gray-500 mb-3 font-semibold">Email</label>
+                                    <input type="email" id="contact-email"
+                                        class="w-full bg-dark-bg/50 border border-white/10 text-white px-5 py-4 focus:outline-none focus:border-gold/50 focus:bg-dark-bg transition-all duration-300"
+                                        placeholder="your@email.com">
                                 </div>
                             </div>
                             <div>
-                                <label class="block text-[10px] uppercase tracking-[0.2em] text-gray-500 mb-3 font-semibold">Message</label>
-                                <textarea rows="5" class="w-full bg-dark-bg/50 border border-white/10 text-white px-5 py-4 focus:outline-none focus:border-gold/50 focus:bg-dark-bg transition-all duration-300 resize-none" placeholder="How can we help?"></textarea>
+                                <label
+                                    class="block text-[10px] uppercase tracking-[0.2em] text-gray-500 mb-3 font-semibold">Message</label>
+                                <textarea rows="5" id="contact-message"
+                                    class="w-full bg-dark-bg/50 border border-white/10 text-white px-5 py-4 focus:outline-none focus:border-gold/50 focus:bg-dark-bg transition-all duration-300 resize-none"
+                                    placeholder="How can we help?"></textarea>
                             </div>
-                            <button type="button" class="w-full bg-transparent border border-gold text-gold py-5 text-xs font-bold uppercase tracking-[0.2em] hover:bg-gold hover:text-black transition-all duration-500">Send Message</button>
+                            <button type="submit" id="contact-submit"
+                                class="w-full bg-transparent border border-gold text-gold py-5 text-xs font-bold uppercase tracking-[0.2em] hover:bg-gold hover:text-black hover:scale-105 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] transition-all duration-500 ease-out rounded-sm btn-glow flex items-center justify-center gap-3">
+                                <span id="contact-btn-text">Send Message</span>
+                                <svg id="contact-btn-spinner" class="hidden w-4 h-4 animate-spin" fill="none"
+                                    viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                        stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor"
+                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                    </path>
+                                </svg>
+                            </button>
                         </form>
                     </div>
                 </div>
             </div>
         </section>
     </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark-bg pt-24 pb-12 border-t border-white/5 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-16 text-sm text-gray-400">
+            <div class="col-span-1 md:col-span-2">
+                <a href="index.html" class="text-3xl font-heading font-bold text-white mb-6 block">
+                    <span class="text-gold">TAPROBANE</span> <span class="font-normal italic text-gray-300">Lager</span>
+                </a>
+                <p class="max-w-sm leading-relaxed text-gray-500 font-light mb-8">
+                    Brewed in Alberta, Inspired by Asia. Smooth, crisp, and refreshing - a perfect blend of lightness
+                    and balance crafted by Two Cousins Culinary Collections.
+                </p>
+                <p class="text-xs tracking-widest uppercase text-gold">Premium Quality Since 2018</p>
+            </div>
+            <div>
+                <h4 class="text-white text-xs uppercase font-semibold tracking-[0.2em] mb-6">Explore</h4>
+                <ul class="space-y-4">
+                    <li><a href="index.html" class="hover:text-gold transition-colors duration-300 flex items-center gap-2 group text-gray-400 hover:text-white">
+                        <svg class="w-4 h-4 text-gold group-hover:drop-shadow-[0_0_8px_rgba(212,175,55,0.8)] transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                        Home
+                    </a></li>
+                    <li><a href="products.html" class="hover:text-gold transition-colors duration-300 flex items-center gap-2 group text-gray-400 hover:text-white">
+                        <svg class="w-4 h-4 text-gold group-hover:drop-shadow-[0_0_8px_rgba(212,175,55,0.8)] transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path>
+                        </svg>
+                        The Beer
+                    </a></li>
+                    <li><a href="about.html" class="hover:text-gold transition-colors duration-300 flex items-center gap-2 group text-gray-400 hover:text-white">
+                        <svg class="w-4 h-4 text-gold group-hover:drop-shadow-[0_0_8px_rgba(212,175,55,0.8)] transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                        Our Story
+                    </a></li>
+                    <li><a href="contact.html" class="hover:text-gold transition-colors duration-300 flex items-center gap-2 group text-gray-400 hover:text-white">
+                        <svg class="w-4 h-4 text-gold group-hover:drop-shadow-[0_0_8px_rgba(212,175,55,0.8)] transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                        Contact
+                    </a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white text-xs uppercase font-semibold tracking-[0.2em] mb-6">Connect</h4>
+                <ul class="space-y-4">
+                    <li><a href="https://www.instagram.com/taprobane_by_twocousins?igsh=MWJqNjE0YWx2MGZqNw=="
+                            target="_blank" rel="noopener noreferrer"
+                            class="hover:text-gold transition-colors duration-300 flex items-center gap-2 group">
+                            <svg class="w-4 h-4 text-gold group-hover:drop-shadow-[0_0_8px_rgba(212,175,55,0.8)] transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-width="1.5"></rect>
+                                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" stroke-width="1.5"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="2" stroke-linecap="round"></line>
+                            </svg>
+                            Instagram</a></li>
+                    <li><a href="https://www.facebook.com/share/18YSPrZbPn/" target="_blank" rel="noopener noreferrer"
+                            class="hover:text-gold transition-colors duration-300 flex items-center gap-2 group">
+                            <svg class="w-4 h-4 text-gold group-hover:drop-shadow-[0_0_8px_rgba(212,175,55,0.8)] transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3.61l.39-4h-4V7a1 1 0 011-1h3z" stroke-width="1.5"></path>
+                            </svg>
+                            Facebook</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600 gap-4">
+            <p>&copy; 2026 Taprobane Lager. All rights reserved. 
+               <span class="mx-2 hidden md:inline">|</span> 
+               <a href="privacy-policy.html" class="hover:text-gold transition-colors">Privacy Policy</a> 
+               <span class="mx-2 hidden md:inline">|</span> 
+               <a href="terms.html" class="hover:text-gold transition-colors">Terms & Conditions</a>
+            </p>
+            <p class="uppercase tracking-widest text-gold/70">Enjoy Responsibly</p>
+        </div>
+    </footer>
+
+    <!-- ===== AGE VERIFICATION GATE ===== -->
+    <div id="age-gate" class="fixed inset-0 z-[300] flex flex-col items-center justify-center p-4 bg-black/80 backdrop-blur-2xl transition-all duration-700">
+        <!-- Floating decorative elements -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+            <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-gold/10 blur-[120px]"></div>
+            <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-gold/5 blur-[120px]"></div>
+        </div>
+
+        <div class="relative w-full max-w-xl text-center flex flex-col items-center bg-dark-surface/50 border border-white/10 p-12 md:p-16 shadow-[0_0_50px_rgba(0,0,0,0.8)] backdrop-blur-lg">
+            
+            <h2 class="text-gold tracking-[0.3em] text-xs uppercase mb-6 font-light inset-0">Welcome to</h2>
+            <h1 class="font-heading text-4xl md:text-5xl font-bold text-white mb-16 tracking-widest uppercase origin-center drop-shadow-[0_0_20px_rgba(212,175,55,0.2)]">Taprobane Lager</h1>
+            
+            <p class="text-gray-300 text-sm mb-8 font-light tracking-wide uppercase">Enter your date of birth</p>
+            
+            <div class="flex gap-4 justify-center mb-6 w-full max-w-sm">
+                <!-- DD -->
+                <div class="w-1/3 group relative">
+                    <div class="absolute -inset-0.5 bg-gradient-to-r from-gold/0 via-gold/50 to-gold/0 rounded-sm opacity-0 group-hover:opacity-100 transition duration-500 blur-sm"></div>
+                    <input type="text" id="age-dd" placeholder="DD" maxlength="2" class="relative w-full text-center py-4 bg-black/60 text-white border border-white/10 rounded-sm focus:border-gold focus:ring-1 focus:ring-gold focus:outline-none placeholder:text-gray-600 font-medium text-lg shadow-inner transition-all duration-300">
+                </div>
+                <!-- MM -->
+                <div class="w-1/3 group relative">
+                    <div class="absolute -inset-0.5 bg-gradient-to-r from-gold/0 via-gold/50 to-gold/0 rounded-sm opacity-0 group-hover:opacity-100 transition duration-500 blur-sm"></div>
+                    <input type="text" id="age-mm" placeholder="MM" maxlength="2" class="relative w-full text-center py-4 bg-black/60 text-white border border-white/10 rounded-sm focus:border-gold focus:ring-1 focus:ring-gold focus:outline-none placeholder:text-gray-600 font-medium text-lg shadow-inner transition-all duration-300">
+                </div>
+                <!-- YYYY -->
+                <div class="w-1/3 group relative">
+                    <div class="absolute -inset-0.5 bg-gradient-to-r from-gold/0 via-gold/50 to-gold/0 rounded-sm opacity-0 group-hover:opacity-100 transition duration-500 blur-sm"></div>
+                    <input type="text" id="age-yyyy" placeholder="YYYY" maxlength="4" class="relative w-full text-center py-4 bg-black/60 text-white border border-white/10 rounded-sm focus:border-gold focus:ring-1 focus:ring-gold focus:outline-none placeholder:text-gray-600 font-medium text-lg shadow-inner transition-all duration-300">
+                </div>
+            </div>
+            
+            <p id="age-error" class="text-red-500 text-xs mb-6 h-4 hidden tracking-wider">You must be of legal drinking age to enter.</p>
+            
+            <div class="flex items-center gap-3 mb-8">
+                <input type="checkbox" id="age-remember" class="w-4 h-4 bg-dark-bg border border-white/20 rounded-sm focus:ring-gold text-gold cursor-pointer accent-gold transition-all duration-300">
+                <label for="age-remember" class="text-gray-400 text-xs font-light uppercase tracking-widest cursor-pointer hover:text-white transition-colors">Remember Me</label>
+            </div>
+
+            <p class="text-gray-500 text-[9px] mb-12 font-light tracking-[0.15em] uppercase">This information is part of our commitment to responsible drinking</p>
+            
+            <button id="age-submit" class="relative overflow-hidden bg-gold text-black px-16 py-4 text-xs font-bold uppercase tracking-[0.2em] hover:bg-white transition-all duration-300 mb-10 shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_40px_rgba(212,175,55,0.6)] rounded-sm group group-focus:bg-white">
+                <span class="relative z-10 transition-colors duration-300">Let Me In</span>
+                <div class="absolute inset-0 h-full w-0 bg-white group-hover:w-full transition-all duration-500 ease-out z-0"></div>
+            </button>
+            
+
+        </div>
+    </div>
+    <!-- ===== END AGE GATE ===== -->
+
+    <!-- ===== CHECKOUT MODAL ===== -->
+    <div id="checkout-modal"
+        class="fixed inset-0 z-[200] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div id="checkout-backdrop" class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
+        <div id="checkout-panel"
+            class="relative w-full max-w-lg bg-dark-surface border border-white/10 rounded-md shadow-[0_30px_80px_rgba(0,0,0,0.8)] transform scale-95 transition-transform duration-300 flex flex-col max-h-[92vh]">
+            <div class="h-1 w-full bg-gradient-to-r from-transparent via-gold to-transparent flex-shrink-0"></div>
+            <div class="flex items-center justify-between px-8 pt-6 pb-4 border-b border-white/5 flex-shrink-0">
+                <div>
+                    <h2 class="font-heading text-xl font-bold text-white">Checkout</h2>
+                    <p class="text-xs text-gray-500 mt-1 tracking-widest uppercase">Taprobane Lager</p>
+                </div>
+                <button id="close-checkout"
+                    class="w-9 h-9 flex items-center justify-center border border-white/10 rounded-full text-gray-400 hover:text-white hover:border-gold transition-all duration-300">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+            <div class="overflow-y-auto flex-1 scrollbar-thin">
+                <div class="px-8 py-4 bg-dark-bg/60 border-b border-white/5">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center border border-gold/30">
+                                <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                        d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-white text-sm font-semibold">Taprobane Lager Pack</p>
+                                <p class="text-gray-500 text-xs" id="checkout-qty-label">1 × $25.99 CAD</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-gold font-heading text-lg font-bold" id="checkout-total">$25.99</p>
+                            <p class="text-gray-600 text-[10px] uppercase tracking-widest">+ applicable taxes</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-8 pt-6 pb-4 border-b border-white/5">
+                    <p class="text-xs text-gray-500 uppercase tracking-[0.2em] mb-4">🚚 Shipping Address</p>
+                    <div class="space-y-3">
+                        <div class="grid grid-cols-2 gap-3">
+                            <div><label class="text-xs text-gray-400 uppercase tracking-widest block mb-2">First
+                                    Name</label><input type="text" id="ship-first" placeholder="John"
+                                    class="w-full bg-dark-bg border border-white/10 rounded-sm px-4 py-3 text-white text-sm focus:outline-none focus:border-gold transition-colors placeholder-gray-600">
+                            </div>
+                            <div><label class="text-xs text-gray-400 uppercase tracking-widest block mb-2">Last
+                                    Name</label><input type="text" id="ship-last" placeholder="Smith"
+                                    class="w-full bg-dark-bg border border-white/10 rounded-sm px-4 py-3 text-white text-sm focus:outline-none focus:border-gold transition-colors placeholder-gray-600">
+                            </div>
+                        </div>
+                        <div><label class="text-xs text-gray-400 uppercase tracking-widest block mb-2">Address Line
+                                1</label><input type="text" id="ship-address1" placeholder="123 Main Street"
+                                class="w-full bg-dark-bg border border-white/10 rounded-sm px-4 py-3 text-white text-sm focus:outline-none focus:border-gold transition-colors placeholder-gray-600">
+                        </div>
+                        <div class="grid grid-cols-3 gap-3">
+                            <div><label
+                                    class="text-xs text-gray-400 uppercase tracking-widest block mb-2">City</label><input
+                                    type="text" id="ship-city" placeholder="Calgary"
+                                    class="w-full bg-dark-bg border border-white/10 rounded-sm px-4 py-3 text-white text-sm focus:outline-none focus:border-gold transition-colors placeholder-gray-600">
+                            </div>
+                            <div><label
+                                    class="text-xs text-gray-400 uppercase tracking-widest block mb-2">Province</label><select
+                                    id="ship-province"
+                                    class="w-full bg-dark-bg border border-white/10 rounded-sm px-4 py-3 text-white text-sm focus:outline-none focus:border-gold transition-colors appearance-none">
+                                    <option value="AB" class="bg-dark-bg">AB</option>
+                                    <option value="BC" class="bg-dark-bg">BC</option>
+                                    <option value="ON" class="bg-dark-bg">ON</option>
+                                </select></div>
+                            <div><label class="text-xs text-gray-400 uppercase tracking-widest block mb-2">Postal
+                                    Code</label><input type="text" id="ship-postal" placeholder="T2P 1J9" maxlength="7"
+                                    class="w-full bg-dark-bg border border-white/10 rounded-sm px-4 py-3 text-white text-sm focus:outline-none focus:border-gold transition-colors placeholder-gray-600">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-8 pt-6">
+                    <p class="text-xs text-gray-500 uppercase tracking-[0.2em] mb-4">💳 Payment Method</p>
+                    <div class="flex gap-2 mb-6">
+                        <button data-tab="card"
+                            class="payment-tab flex-1 py-3 text-xs font-bold uppercase tracking-widest border transition-all duration-300 rounded-sm border-gold text-gold bg-gold/5">💳
+                            Card</button>
+                        <button data-tab="paypal"
+                            class="payment-tab flex-1 py-3 text-xs font-bold uppercase tracking-widest border transition-all duration-300 rounded-sm border-white/10 text-gray-400 hover:border-gold/50">PayPal</button>
+                    </div>
+                    <div id="tab-card" class="payment-tab-content pb-6">
+                        <div class="space-y-4">
+                            <div><label class="text-xs text-gray-400 uppercase tracking-widest block mb-2">Full Name on
+                                    Card</label><input type="text" id="cardholder-name" placeholder="John Smith"
+                                    class="w-full bg-dark-bg border border-white/10 rounded-sm px-4 py-3 text-white text-sm focus:outline-none focus:border-gold transition-colors placeholder-gray-600">
+                            </div>
+                            <div><label class="text-xs text-gray-400 uppercase tracking-widest block mb-2">Card
+                                    Details</label>
+                                <div id="stripe-card-element"
+                                    class="bg-dark-bg border border-white/10 rounded-sm px-4 py-3.5 transition-colors focus-within:border-gold min-h-[44px]">
+                                </div>
+                                <p id="stripe-card-errors" class="text-red-400 text-xs mt-2 hidden"></p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div><label
+                                        class="text-xs text-gray-400 uppercase tracking-widest block mb-2">Email</label><input
+                                        type="email" id="billing-email" placeholder="you@email.com"
+                                        class="w-full bg-dark-bg border border-white/10 rounded-sm px-4 py-3 text-white text-sm focus:outline-none focus:border-gold transition-colors placeholder-gray-600">
+                                </div>
+                                <div><label
+                                        class="text-xs text-gray-400 uppercase tracking-widest block mb-2">Phone</label><input
+                                        type="tel" id="billing-phone" placeholder="+1 (000) 000-0000"
+                                        class="w-full bg-dark-bg border border-white/10 rounded-sm px-4 py-3 text-white text-sm focus:outline-none focus:border-gold transition-colors placeholder-gray-600">
+                                </div>
+                            </div>
+                            <button id="stripe-pay-btn"
+                                class="w-full bg-gold text-black py-4 text-xs font-bold uppercase tracking-[0.2em] hover:bg-white hover:shadow-[0_0_25px_rgba(212,175,55,0.5)] transition-all duration-300 rounded-sm flex items-center justify-center gap-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+                                    </path>
+                                </svg>
+                                Pay Securely
+                            </button>
+                            <p class="text-center text-xs text-gray-600">🔒 Secured by Stripe · SSL encrypted · Never
+                                stored</p>
+                        </div>
+                    </div>
+                    <div id="tab-paypal" class="payment-tab-content pb-6 hidden">
+                        <p class="text-gray-400 text-sm font-light mb-5 text-center">Complete your purchase securely via
+                            PayPal.</p>
+                        <div id="paypal-button-container"></div>
+                        <p class="text-center text-xs text-gray-600 mt-4">🔒 Redirected to PayPal's secure checkout</p>
+                    </div>
+                </div>
+                <div class="px-8 pb-6 pt-2 border-t border-white/5 mt-2">
+                    <p class="text-[10px] text-gray-700 text-center leading-relaxed">By completing this purchase you
+                        confirm you are 19+ years of age and agree to our Terms &amp; Conditions. Taprobane Lager only
+                        ships within Alberta, Canada. Please drink responsibly.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ===== END CHECKOUT MODAL ===== -->
+
     <script src="static/js/main.js"></script>
+    <script src="static/js/checkout.js"></script>
+    <script>
+        // Contact form handler
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const name = document.getElementById('contact-name').value.trim();
+                const email = document.getElementById('contact-email').value.trim();
+                const message = document.getElementById('contact-message').value.trim();
+                if (!name || !email || !message) {
+                    return;
+                }
+                const btn = document.getElementById('contact-submit');
+                const btnText = document.getElementById('contact-btn-text');
+                const spinner = document.getElementById('contact-btn-spinner');
+                btn.disabled = true;
+                btnText.textContent = 'Sending...';
+                spinner.classList.remove('hidden');
+                // Simulate send delay
+                setTimeout(() => {
+                    contactForm.classList.add('hidden');
+                    document.getElementById('contact-success').classList.remove('hidden');
+                }, 1500);
+            });
+        }
+    </script>
 </body>
+
 </html>

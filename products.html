@@ -1,74 +1,506 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taprobane Lager | High-End Excellence</title>
+    <title>Taprobane Lager | The Beer — Premium 355ml Can</title>
+    <meta name="description"
+        content="Order Taprobane Lager — a smooth, crisp, and refreshing premium lager brewed in Alberta with Asian inspiration. Available in 355ml cans.">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = { theme: { extend: { colors: { gold: { DEFAULT: '#D4AF37' }, dark: { bg: '#0a0a0a', surface: '#111111' } }, fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Playfair Display', 'serif'] } } } };
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            DEFAULT: '#D4AF37',
+                            light: '#F3E5AB',
+                            dark: '#996515',
+                        },
+                        red: { brand: '#B91C1C' },
+                        dark: { bg: '#0a0a0a', surface: '#111111' }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        };
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="static/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Stripe.js -->
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
-<body class="bg-dark-bg text-gray-200 font-sans antialiased overflow-x-hidden selection:bg-gold selection:text-black leading-relaxed">
-    <nav class="fixed w-full z-50 transition-all duration-300 py-6 px-6 md:px-12" id="navbar">
+
+<body
+    class="bg-dark-bg text-gray-200 font-sans antialiased overflow-x-hidden selection:bg-gold selection:text-black leading-relaxed">
+
+    <!-- Noise Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 transition-all duration-300 py-6 px-6 md:px-12 bg-black/40 backdrop-blur-md border-b border-white/5"
+        id="navbar">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-heading font-bold text-white tracking-widest flex items-center gap-2 drop-shadow-md"><span class="text-gold">TAPROBANE</span> LAGER</a>
+            <a href="index.html"
+                class="text-2xl font-heading font-bold text-white tracking-widest flex items-center gap-2 drop-shadow-md"><span
+                    class="text-gold">TAPROBANE</span> LAGER</a>
             <div class="hidden md:flex items-center space-x-10">
-                <a href="index.html" class="text-xs font-semibold tracking-[0.15em] uppercase hover:text-gold transition-colors">Home</a>
-                <a href="products.html" class="text-xs font-semibold tracking-[0.15em] text-gold uppercase hover:text-gold transition-colors">The Beer</a>
-                <a href="about.html" class="text-xs font-semibold tracking-[0.15em] uppercase hover:text-gold transition-colors">Our Story</a>
-                <a href="contact.html" class="text-xs font-semibold tracking-[0.15em] uppercase hover:text-gold transition-colors">Contact</a>
-                <a href="products.html" class="px-6 py-2.5 border border-gold text-gold hover:bg-gold hover:text-black transition-all duration-500 uppercase text-xs font-bold tracking-[0.15em] backdrop-blur-sm">Order Now</a>
+                <a href="index.html"
+                    class="text-xs font-semibold tracking-[0.15em] uppercase hover:text-gold transition-colors">Home</a>
+                <a href="products.html"
+                    class="text-xs font-semibold tracking-[0.15em] text-gold uppercase hover:text-gold transition-colors">The
+                    Beer</a>
+                <a href="about.html"
+                    class="text-xs font-semibold tracking-[0.15em] uppercase hover:text-gold transition-colors">Our
+                    Story</a>
+                <a href="contact.html"
+                    class="text-xs font-semibold tracking-[0.15em] uppercase hover:text-gold transition-colors">Contact</a>
+                <a href="products.html"
+                    class="px-6 py-2.5 border border-gold text-gold hover:bg-gold hover:text-black hover:scale-105 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-500 ease-out uppercase text-xs font-bold tracking-[0.15em] backdrop-blur-sm rounded-sm btn-glow">Order
+                    Now</a>
             </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden absolute top-full left-0 w-full bg-dark-bg/95 backdrop-blur-md border-t border-gray-800 flex flex-col py-4 shadow-2xl transition-all duration-300">
+            <a href="index.html"
+                class="px-8 py-4 text-sm font-semibold tracking-widest uppercase hover:text-gold transition-colors border-b border-gray-800/50 text-center">Home</a>
+            <a href="products.html"
+                class="px-8 py-4 text-sm font-semibold tracking-widest uppercase hover:text-gold transition-colors border-b border-gray-800/50 text-center">The
+                Beer</a>
+            <a href="about.html"
+                class="px-8 py-4 text-sm font-semibold tracking-widest uppercase hover:text-gold transition-colors border-b border-gray-800/50 text-center">Our
+                Story</a>
+            <a href="contact.html"
+                class="px-8 py-4 text-sm font-semibold tracking-widest uppercase hover:text-gold transition-colors text-center">Contact</a>
         </div>
     </nav>
+
     <main class="min-h-screen">
         <section class="pt-40 pb-32 bg-dark-bg min-h-screen relative overflow-hidden">
-            <div class="absolute top-[-20%] right-[-10%] w-[50%] h-[50%] bg-gold/5 blur-[120px] rounded-full pointer-events-none"></div>
+            <div
+                class="absolute top-[-20%] right-[-10%] w-[50%] h-[50%] bg-gold/5 blur-[120px] rounded-full pointer-events-none">
+            </div>
             <div class="max-w-7xl mx-auto px-6 relative z-10">
                 <div class="text-center max-w-3xl mx-auto mb-24 gs-reveal">
-                    <h3 class="text-gold tracking-[0.2em] uppercase text-xs mb-4 font-semibold">The Core of Taprobane</h3>
-                    <h1 class="text-5xl md:text-7xl font-heading font-bold mb-8 text-white">Our <span class="text-gold italic font-normal">Lager</span></h1>
+                    <h3 class="text-gold tracking-[0.2em] uppercase text-xs mb-4 font-semibold">The Core of Taprobane
+                    </h3>
+                    <h1 class="text-5xl md:text-7xl font-heading font-bold mb-8 text-white">Our <span
+                            class="text-gold italic font-normal">Lager</span></h1>
                     <div class="w-24 h-[1px] bg-gold mx-auto mb-8"></div>
-                    <p class="text-gray-400 font-light text-lg leading-relaxed">Experience the unmatched smoothness and crispness of Taprobane Lager. Made for those who appreciate the finer details of a premium brew.</p>
+                    <p class="text-gray-400 font-light text-lg leading-relaxed">Experience the unmatched smoothness and
+                        crispness of Taprobane Lager. Made for those who appreciate the finer details of a premium brew.
+                    </p>
                 </div>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                     <div class="gs-reveal relative p-10 flex justify-center group">
-                        <div class="absolute inset-0 bg-dark-surface/50 border border-white/5 rounded-sm transform transition-transform duration-500 group-hover:scale-[1.02]"></div>
-                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gold/20 blur-[80px] rounded-full"></div>
-                        <img src="static/images/can_studio.jpg" alt="Taprobane Lager Can" class="relative z-10 max-w-sm w-full h-[600px] object-cover object-center drop-shadow-[0_30px_30px_rgba(0,0,0,0.8)] filter contrast-125 transition-transform duration-700 group-hover:-translate-y-4">
+                        <div
+                            class="absolute inset-0 bg-dark-surface/50 border border-white/5 rounded-sm transform transition-transform duration-500 group-hover:scale-[1.02]">
+                        </div>
+                        <div
+                            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gold/20 blur-[80px] rounded-full">
+                        </div>
+                        <img src="static/images/premium_hero.jpg" alt="Taprobane Lager Can"
+                            class="relative z-10 max-w-sm w-full h-[600px] object-cover object-center drop-shadow-[0_30px_30px_rgba(0,0,0,0.8)] filter contrast-125 transition-transform duration-700 group-hover:-translate-y-4">
                     </div>
                     <div class="gs-reveal pl-0 lg:pl-10">
                         <h2 class="text-4xl font-heading font-bold mb-2 text-white">Taprobane Lager</h2>
                         <div class="flex items-center gap-4 mb-8">
-                            <p class="text-gold uppercase tracking-[0.2em] text-xs font-semibold">473ml Single Tall Can</p>
+                            <p class="text-gold uppercase tracking-[0.2em] text-xs font-semibold">355ml Single Can
+                            </p>
                             <span class="w-1 h-1 bg-gray-600 rounded-full"></span>
                             <p class="text-gray-400 uppercase tracking-widest text-xs">Premium Grade</p>
                         </div>
                         <div class="space-y-6 text-gray-400 font-light leading-relaxed text-lg mb-12">
-                            <p>Designed for moments worth celebrating, our signature lager delivers a refined taste. Characterized by its light, golden body and a crisp finish, it carries subtle notes of grain and a delicate hop aroma.</p>
-                            <p>Whether you're unwinding after a long day or toasting with friends, Taprobane Lager offers a premium experience in every pour.</p>
+                            <p>Designed for moments worth celebrating, our signature lager delivers a refined taste.
+                                Characterized by its light, golden body and a crisp finish, it carries subtle notes of
+                                grain and a delicate hop aroma.</p>
+                            <p>Whether you're unwinding after a long day or toasting with friends, Taprobane Lager
+                                offers a premium experience in every pour.</p>
                         </div>
-                        <div class="border-t border-white/10 pt-8 mt-12 pb-8">
-                            <div class="grid grid-cols-3 gap-6 mb-10">
-                                <div><p class="text-xs uppercase tracking-widest text-gray-500 mb-1">ABV</p><p class="text-xl font-heading text-white">4.8%</p></div>
-                                <div><p class="text-xs uppercase tracking-widest text-gray-500 mb-1">IBU</p><p class="text-xl font-heading text-white">18</p></div>
-                                <div><p class="text-xs uppercase tracking-widest text-gray-500 mb-1">Color</p><p class="text-xl font-heading text-white">Gold</p></div>
+                        <!-- Detailed Can Specifications Table -->
+                        <div class="bg-dark-bg/60 border border-white/5 rounded-sm p-6 mb-8 mt-10 shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+                            <h4 class="text-gold text-[10px] font-semibold uppercase tracking-[0.2em] mb-5 pb-3 border-b border-light-divider">Can Details</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-4">
+                                <div>
+                                    <span class="text-gray-500 block uppercase tracking-widest text-[9px] mb-1">Contains</span>
+                                    <span class="text-white text-sm font-medium">Malted Barley, Maze and Hops</span>
+                                </div>
+                                <div>
+                                    <span class="text-gray-500 block uppercase tracking-widest text-[9px] mb-1">Purity</span>
+                                    <span class="text-white text-sm font-medium">Unpasturized, Unfiltered, No Preservatives</span>
+                                </div>
+                                <div>
+                                    <span class="text-gray-500 block uppercase tracking-widest text-[9px] mb-1">Produced At</span>
+                                    <span class="text-white text-sm font-medium block">Rig Hand Distillery</span>
+                                    <span class="text-gray-400 text-xs mt-0.5">Leduc County, Alberta, Canada</span>
+                                </div>
+                                <div>
+                                    <span class="text-gray-500 block uppercase tracking-widest text-[9px] mb-1">Care & Action</span>
+                                    <span class="text-white text-sm font-medium flex items-center gap-2">Keep Cold. Drink Fresh. Recycle <span class="text-green-500 text-base">♻</span></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-white/10 pt-6 pb-8">
+                            <div class="grid grid-cols-3 gap-4 mb-4">
+                                <div>
+                                    <p class="text-xs uppercase tracking-widest text-gray-500 mb-1">Volume</p>
+                                    <p class="text-xl font-heading text-white">355ml</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs uppercase tracking-widest text-gray-500 mb-1">ABV</p>
+                                    <p class="text-xl font-heading text-white">4.8% alc/vol</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs uppercase tracking-widest text-gray-500 mb-1">Category</p>
+                                    <p class="text-xl font-heading text-white">Beer / Bière</p>
+                                </div>
+                            </div>
+                                <h3 class="text-3xl font-heading text-white">$25.99 <span
+                                        class="text-xs text-gray-500 font-sans tracking-widest uppercase ml-2">CAD /
+                                        Pack</span></h3>
                             </div>
                         </div>
                         <div class="flex gap-4">
-                            <button class="flex-1 bg-gold text-black py-4 text-xs uppercase tracking-[0.2em] font-bold hover:bg-white transition-colors duration-300">Add to Cart</button>
+                            <div class="flex border border-white/20 rounded-sm bg-dark-surface">
+                                <button type="button"
+                                    class="px-4 text-gray-400 hover:text-white transition-colors text-xl pb-1"
+                                    onclick="document.getElementById('qty').value = Math.max(1, parseInt(document.getElementById('qty').value) - 1)">-</button>
+                                <input type="number" id="qty" value="1" min="1"
+                                    class="w-12 bg-transparent text-center text-white focus:outline-none appearance-none font-bold"
+                                    style="-moz-appearance: textfield; appearance: textfield;">
+                                <button type="button"
+                                    class="px-4 text-gray-400 hover:text-white transition-colors text-xl pb-1"
+                                    onclick="document.getElementById('qty').value = parseInt(document.getElementById('qty').value) + 1">+</button>
+                            </div>
+                            <button id="add-to-cart-btn"
+                                class="flex-1 bg-gold text-black py-4 text-xs uppercase tracking-[0.2em] font-bold hover:bg-white hover:scale-[1.02] hover:-translate-y-1 hover:shadow-[0_0_25px_rgba(212,175,55,0.5)] transition-all duration-300 ease-out rounded-sm btn-glow">Add
+                                to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Row -->
+                <div class="mt-32 gs-reveal">
+                    <h3 class="text-center text-xs uppercase tracking-[0.3em] text-gold font-semibold mb-16">In The Wild
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="relative overflow-hidden group h-72">
+                            <img src="static/images/can_studio.jpg" alt="Taprobane Studio"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <div
+                                class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-500">
+                            </div>
+                        </div>
+                        <div class="relative overflow-hidden group h-72">
+                            <img src="static/images/can_tree.jpg" alt="Taprobane Outdoor"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <div
+                                class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-500">
+                            </div>
+                        </div>
+                        <div class="relative overflow-hidden group h-72">
+                            <img src="static/images/cans_bar.jpg" alt="Taprobane Bar"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <div
+                                class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-500">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark-bg pt-24 pb-12 border-t border-white/5 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-16 text-sm text-gray-400">
+            <div class="col-span-1 md:col-span-2">
+                <a href="index.html" class="text-3xl font-heading font-bold text-white mb-6 block">
+                    <span class="text-gold">TAPROBANE</span> <span class="font-normal italic text-gray-300">Lager</span>
+                </a>
+                <p class="max-w-sm leading-relaxed text-gray-500 font-light mb-8">
+                    Brewed in Alberta, Inspired by Asia. Smooth, crisp, and refreshing - a perfect blend of lightness
+                    and balance crafted by Two Cousins Culinary Collections.
+                </p>
+                <p class="text-xs tracking-widest uppercase text-gold">Premium Quality Since 2018</p>
+            </div>
+            <div>
+                <h4 class="text-white text-xs uppercase font-semibold tracking-[0.2em] mb-6">Explore</h4>
+                <ul class="space-y-4">
+                    <li><a href="index.html" class="hover:text-gold transition-colors duration-300 flex items-center gap-2 group text-gray-400 hover:text-white">
+                        <svg class="w-4 h-4 text-gold group-hover:drop-shadow-[0_0_8px_rgba(212,175,55,0.8)] transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                        Home
+                    </a></li>
+                    <li><a href="products.html" class="hover:text-gold transition-colors duration-300 flex items-center gap-2 group text-gray-400 hover:text-white">
+                        <svg class="w-4 h-4 text-gold group-hover:drop-shadow-[0_0_8px_rgba(212,175,55,0.8)] transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path>
+                        </svg>
+                        The Beer
+                    </a></li>
+                    <li><a href="about.html" class="hover:text-gold transition-colors duration-300 flex items-center gap-2 group text-gray-400 hover:text-white">
+                        <svg class="w-4 h-4 text-gold group-hover:drop-shadow-[0_0_8px_rgba(212,175,55,0.8)] transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                        Our Story
+                    </a></li>
+                    <li><a href="contact.html" class="hover:text-gold transition-colors duration-300 flex items-center gap-2 group text-gray-400 hover:text-white">
+                        <svg class="w-4 h-4 text-gold group-hover:drop-shadow-[0_0_8px_rgba(212,175,55,0.8)] transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                        Contact
+                    </a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white text-xs uppercase font-semibold tracking-[0.2em] mb-6">Connect</h4>
+                <ul class="space-y-4">
+                    <li><a href="https://www.instagram.com/taprobane_by_twocousins?igsh=MWJqNjE0YWx2MGZqNw=="
+                            target="_blank" rel="noopener noreferrer"
+                            class="hover:text-gold transition-colors duration-300 flex items-center gap-2 group">
+                            <svg class="w-4 h-4 text-gold group-hover:drop-shadow-[0_0_8px_rgba(212,175,55,0.8)] transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-width="1.5"></rect>
+                                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" stroke-width="1.5"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="2" stroke-linecap="round"></line>
+                            </svg>
+                            Instagram</a></li>
+                    <li><a href="https://www.facebook.com/share/18YSPrZbPn/" target="_blank" rel="noopener noreferrer"
+                            class="hover:text-gold transition-colors duration-300 flex items-center gap-2 group">
+                            <svg class="w-4 h-4 text-gold group-hover:drop-shadow-[0_0_8px_rgba(212,175,55,0.8)] transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3.61l.39-4h-4V7a1 1 0 011-1h3z" stroke-width="1.5"></path>
+                            </svg>
+                            Facebook</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600 gap-4">
+            <p>&copy; 2026 Taprobane Lager. All rights reserved. 
+               <span class="mx-2 hidden md:inline">|</span> 
+               <a href="privacy-policy.html" class="hover:text-gold transition-colors">Privacy Policy</a> 
+               <span class="mx-2 hidden md:inline">|</span> 
+               <a href="terms.html" class="hover:text-gold transition-colors">Terms & Conditions</a>
+            </p>
+            <p class="uppercase tracking-widest text-gold/70">Enjoy Responsibly</p>
+        </div>
+    </footer>
+
+    <!-- ===== AGE VERIFICATION GATE ===== -->
+    <div id="age-gate" class="fixed inset-0 z-[300] flex flex-col items-center justify-center p-4 bg-black/80 backdrop-blur-2xl transition-all duration-700">
+        <!-- Floating decorative elements -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+            <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-gold/10 blur-[120px]"></div>
+            <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-gold/5 blur-[120px]"></div>
+        </div>
+
+        <div class="relative w-full max-w-xl text-center flex flex-col items-center bg-dark-surface/50 border border-white/10 p-12 md:p-16 shadow-[0_0_50px_rgba(0,0,0,0.8)] backdrop-blur-lg">
+            
+            <h2 class="text-gold tracking-[0.3em] text-xs uppercase mb-6 font-light inset-0">Welcome to</h2>
+            <h1 class="font-heading text-4xl md:text-5xl font-bold text-white mb-16 tracking-widest uppercase origin-center drop-shadow-[0_0_20px_rgba(212,175,55,0.2)]">Taprobane Lager</h1>
+            
+            <p class="text-gray-300 text-sm mb-8 font-light tracking-wide uppercase">Enter your date of birth</p>
+            
+            <div class="flex gap-4 justify-center mb-6 w-full max-w-sm">
+                <!-- DD -->
+                <div class="w-1/3 group relative">
+                    <div class="absolute -inset-0.5 bg-gradient-to-r from-gold/0 via-gold/50 to-gold/0 rounded-sm opacity-0 group-hover:opacity-100 transition duration-500 blur-sm"></div>
+                    <input type="text" id="age-dd" placeholder="DD" maxlength="2" class="relative w-full text-center py-4 bg-black/60 text-white border border-white/10 rounded-sm focus:border-gold focus:ring-1 focus:ring-gold focus:outline-none placeholder:text-gray-600 font-medium text-lg shadow-inner transition-all duration-300">
+                </div>
+                <!-- MM -->
+                <div class="w-1/3 group relative">
+                    <div class="absolute -inset-0.5 bg-gradient-to-r from-gold/0 via-gold/50 to-gold/0 rounded-sm opacity-0 group-hover:opacity-100 transition duration-500 blur-sm"></div>
+                    <input type="text" id="age-mm" placeholder="MM" maxlength="2" class="relative w-full text-center py-4 bg-black/60 text-white border border-white/10 rounded-sm focus:border-gold focus:ring-1 focus:ring-gold focus:outline-none placeholder:text-gray-600 font-medium text-lg shadow-inner transition-all duration-300">
+                </div>
+                <!-- YYYY -->
+                <div class="w-1/3 group relative">
+                    <div class="absolute -inset-0.5 bg-gradient-to-r from-gold/0 via-gold/50 to-gold/0 rounded-sm opacity-0 group-hover:opacity-100 transition duration-500 blur-sm"></div>
+                    <input type="text" id="age-yyyy" placeholder="YYYY" maxlength="4" class="relative w-full text-center py-4 bg-black/60 text-white border border-white/10 rounded-sm focus:border-gold focus:ring-1 focus:ring-gold focus:outline-none placeholder:text-gray-600 font-medium text-lg shadow-inner transition-all duration-300">
+                </div>
+            </div>
+            
+            <p id="age-error" class="text-red-500 text-xs mb-6 h-4 hidden tracking-wider">You must be of legal drinking age to enter.</p>
+            
+            <div class="flex items-center gap-3 mb-8">
+                <input type="checkbox" id="age-remember" class="w-4 h-4 bg-dark-bg border border-white/20 rounded-sm focus:ring-gold text-gold cursor-pointer accent-gold transition-all duration-300">
+                <label for="age-remember" class="text-gray-400 text-xs font-light uppercase tracking-widest cursor-pointer hover:text-white transition-colors">Remember Me</label>
+            </div>
+
+            <p class="text-gray-500 text-[9px] mb-12 font-light tracking-[0.15em] uppercase">This information is part of our commitment to responsible drinking</p>
+            
+            <button id="age-submit" class="relative overflow-hidden bg-gold text-black px-16 py-4 text-xs font-bold uppercase tracking-[0.2em] hover:bg-white transition-all duration-300 mb-10 shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_40px_rgba(212,175,55,0.6)] rounded-sm group group-focus:bg-white">
+                <span class="relative z-10 transition-colors duration-300">Let Me In</span>
+                <div class="absolute inset-0 h-full w-0 bg-white group-hover:w-full transition-all duration-500 ease-out z-0"></div>
+            </button>
+            
+
+        </div>
+    </div>
+    <!-- ===== END AGE GATE ===== -->
+
+    <!-- ===== CHECKOUT MODAL ===== -->
+    <div id="checkout-modal"
+        class="fixed inset-0 z-[200] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div id="checkout-backdrop" class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
+        <div id="checkout-panel"
+            class="relative w-full max-w-lg bg-dark-surface border border-white/10 rounded-md shadow-[0_30px_80px_rgba(0,0,0,0.8)] transform scale-95 transition-transform duration-300 flex flex-col max-h-[92vh]">
+            <div class="h-1 w-full bg-gradient-to-r from-transparent via-gold to-transparent flex-shrink-0"></div>
+            <div class="flex items-center justify-between px-8 pt-6 pb-4 border-b border-white/5 flex-shrink-0">
+                <div>
+                    <h2 class="font-heading text-xl font-bold text-white">Checkout</h2>
+                    <p class="text-xs text-gray-500 mt-1 tracking-widest uppercase">Taprobane Lager</p>
+                </div>
+                <button id="close-checkout"
+                    class="w-9 h-9 flex items-center justify-center border border-white/10 rounded-full text-gray-400 hover:text-white hover:border-gold transition-all duration-300">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+            <div class="overflow-y-auto flex-1 scrollbar-thin">
+                <div class="px-8 py-4 bg-dark-bg/60 border-b border-white/5">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center border border-gold/30">
+                                <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                        d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-white text-sm font-semibold">Taprobane Lager Pack</p>
+                                <p class="text-gray-500 text-xs" id="checkout-qty-label">1 × $25.99 CAD</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-gold font-heading text-lg font-bold" id="checkout-total">$25.99</p>
+                            <p class="text-gray-600 text-[10px] uppercase tracking-widest">+ applicable taxes</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-8 pt-6 pb-4 border-b border-white/5">
+                    <p class="text-xs text-gray-500 uppercase tracking-[0.2em] mb-4">🚚 Shipping Address</p>
+                    <div class="space-y-3">
+                        <div class="grid grid-cols-2 gap-3">
+                            <div><label class="text-xs text-gray-400 uppercase tracking-widest block mb-2">First
+                                    Name</label><input type="text" id="ship-first" placeholder="John"
+                                    class="w-full bg-dark-bg border border-white/10 rounded-sm px-4 py-3 text-white text-sm focus:outline-none focus:border-gold transition-colors placeholder-gray-600">
+                            </div>
+                            <div><label class="text-xs text-gray-400 uppercase tracking-widest block mb-2">Last
+                                    Name</label><input type="text" id="ship-last" placeholder="Smith"
+                                    class="w-full bg-dark-bg border border-white/10 rounded-sm px-4 py-3 text-white text-sm focus:outline-none focus:border-gold transition-colors placeholder-gray-600">
+                            </div>
+                        </div>
+                        <div><label class="text-xs text-gray-400 uppercase tracking-widest block mb-2">Address Line
+                                1</label><input type="text" id="ship-address1" placeholder="123 Main Street"
+                                class="w-full bg-dark-bg border border-white/10 rounded-sm px-4 py-3 text-white text-sm focus:outline-none focus:border-gold transition-colors placeholder-gray-600">
+                        </div>
+                        <div class="grid grid-cols-3 gap-3">
+                            <div><label
+                                    class="text-xs text-gray-400 uppercase tracking-widest block mb-2">City</label><input
+                                    type="text" id="ship-city" placeholder="Calgary"
+                                    class="w-full bg-dark-bg border border-white/10 rounded-sm px-4 py-3 text-white text-sm focus:outline-none focus:border-gold transition-colors placeholder-gray-600">
+                            </div>
+                            <div><label
+                                    class="text-xs text-gray-400 uppercase tracking-widest block mb-2">Province</label><select
+                                    id="ship-province"
+                                    class="w-full bg-dark-bg border border-white/10 rounded-sm px-4 py-3 text-white text-sm focus:outline-none focus:border-gold transition-colors appearance-none">
+                                    <option value="AB" class="bg-dark-bg">AB</option>
+                                    <option value="BC" class="bg-dark-bg">BC</option>
+                                    <option value="ON" class="bg-dark-bg">ON</option>
+                                </select></div>
+                            <div><label class="text-xs text-gray-400 uppercase tracking-widest block mb-2">Postal
+                                    Code</label><input type="text" id="ship-postal" placeholder="T2P 1J9" maxlength="7"
+                                    class="w-full bg-dark-bg border border-white/10 rounded-sm px-4 py-3 text-white text-sm focus:outline-none focus:border-gold transition-colors placeholder-gray-600">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-8 pt-6">
+                    <p class="text-xs text-gray-500 uppercase tracking-[0.2em] mb-4">💳 Payment Method</p>
+                    <div class="flex gap-2 mb-6">
+                        <button data-tab="card"
+                            class="payment-tab flex-1 py-3 text-xs font-bold uppercase tracking-widest border transition-all duration-300 rounded-sm border-gold text-gold bg-gold/5">💳
+                            Card</button>
+                        <button data-tab="paypal"
+                            class="payment-tab flex-1 py-3 text-xs font-bold uppercase tracking-widest border transition-all duration-300 rounded-sm border-white/10 text-gray-400 hover:border-gold/50">PayPal</button>
+                    </div>
+                    <div id="tab-card" class="payment-tab-content pb-6">
+                        <div class="space-y-4">
+                            <div><label class="text-xs text-gray-400 uppercase tracking-widest block mb-2">Full Name on
+                                    Card</label><input type="text" id="cardholder-name" placeholder="John Smith"
+                                    class="w-full bg-dark-bg border border-white/10 rounded-sm px-4 py-3 text-white text-sm focus:outline-none focus:border-gold transition-colors placeholder-gray-600">
+                            </div>
+                            <div><label class="text-xs text-gray-400 uppercase tracking-widest block mb-2">Card
+                                    Details</label>
+                                <div id="stripe-card-element"
+                                    class="bg-dark-bg border border-white/10 rounded-sm px-4 py-3.5 transition-colors focus-within:border-gold min-h-[44px]">
+                                </div>
+                                <p id="stripe-card-errors" class="text-red-400 text-xs mt-2 hidden"></p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div><label
+                                        class="text-xs text-gray-400 uppercase tracking-widest block mb-2">Email</label><input
+                                        type="email" id="billing-email" placeholder="you@email.com"
+                                        class="w-full bg-dark-bg border border-white/10 rounded-sm px-4 py-3 text-white text-sm focus:outline-none focus:border-gold transition-colors placeholder-gray-600">
+                                </div>
+                                <div><label
+                                        class="text-xs text-gray-400 uppercase tracking-widest block mb-2">Phone</label><input
+                                        type="tel" id="billing-phone" placeholder="+1 (000) 000-0000"
+                                        class="w-full bg-dark-bg border border-white/10 rounded-sm px-4 py-3 text-white text-sm focus:outline-none focus:border-gold transition-colors placeholder-gray-600">
+                                </div>
+                            </div>
+                            <button id="stripe-pay-btn"
+                                class="w-full bg-gold text-black py-4 text-xs font-bold uppercase tracking-[0.2em] hover:bg-white hover:shadow-[0_0_25px_rgba(212,175,55,0.5)] transition-all duration-300 rounded-sm flex items-center justify-center gap-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+                                    </path>
+                                </svg>
+                                Pay Securely
+                            </button>
+                            <p class="text-center text-xs text-gray-600">🔒 Secured by Stripe · SSL encrypted · Never
+                                stored</p>
+                        </div>
+                    </div>
+                    <div id="tab-paypal" class="payment-tab-content pb-6 hidden">
+                        <p class="text-gray-400 text-sm font-light mb-5 text-center">Complete your purchase securely via
+                            PayPal.</p>
+                        <div id="paypal-button-container"></div>
+                        <p class="text-center text-xs text-gray-600 mt-4">🔒 Redirected to PayPal's secure checkout</p>
+                    </div>
+                </div>
+                <div class="px-8 pb-6 pt-2 border-t border-white/5 mt-2">
+                    <p class="text-[10px] text-gray-700 text-center leading-relaxed">By completing this purchase you
+                        confirm you are 19+ years of age and agree to our Terms &amp; Conditions. Taprobane Lager only
+                        ships within Alberta, Canada. Please drink responsibly.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ===== END CHECKOUT MODAL ===== -->
+
     <script src="static/js/main.js"></script>
+    <script src="static/js/checkout.js"></script>
 </body>
+
 </html>
