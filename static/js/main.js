@@ -69,8 +69,21 @@ document.addEventListener("DOMContentLoaded", () => {
                             ageGate.style.pointerEvents = 'none';
                         }, 600);
                     } else {
-                        errText.textContent = "You must be 19+ to enter.";
+                        errText.textContent = "Access Denied. You must be 19+ to enter.";
                         errText.classList.remove('hidden');
+                        
+                        // Disable inputs and button to reject the attempt
+                        inputDD.disabled = true;
+                        inputMM.disabled = true;
+                        inputYYYY.disabled = true;
+                        submitBtn.disabled = true;
+                        submitBtn.style.opacity = '0.5';
+                        submitBtn.style.cursor = 'not-allowed';
+                        
+                        // Redirect away after a short delay
+                        setTimeout(() => {
+                            window.location.href = "https://www.google.com";
+                        }, 2000);
                     }
                 });
             }

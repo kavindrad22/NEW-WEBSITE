@@ -110,6 +110,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function mountStripeCard() {
         if (cardMounted || !cardMount) return;
 
+        injectCaptcha('stripe-pay-btn', 'stripe');
+
         const keyIsReal = STRIPE_PUBLISHABLE_KEY && !STRIPE_PUBLISHABLE_KEY.startsWith('YOUR_');
 
         if (!keyIsReal) {
@@ -130,6 +132,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (stripePayBtn) {
         stripePayBtn.addEventListener('click', async () => {
+            let stripeCheck = document.getElementById('robot-check-stripe');
+            if (stripeCheck && !stripeCheck.checked) {
+                const box = stripeCheck.closest('.captcha-container');
+                box.classList.add('border-red-500');
+                setTimeout(() => box.classList.remove('border-red-500'), 2000);
+                showMsg('Please verify you are not a robot.', 'error');
+                return;
+            }
+
             const keyIsReal = STRIPE_PUBLISHABLE_KEY && !STRIPE_PUBLISHABLE_KEY.startsWith('YOUR_') && STRIPE_PRICE_ID && !STRIPE_PRICE_ID.startsWith('YOUR_');
             if (!keyIsReal) {
                 showMsg('⚠️ Add your Stripe Publishable Key AND Price ID in checkout.js to process payments.', 'warn');
@@ -190,11 +201,30 @@ document.addEventListener('DOMContentLoaded', () => {
         if (paypalRendered) return;
         paypalRendered = true;
 
+        let paypalCheck = injectCaptcha('paypal-button-container', 'paypal');
+
         const qty   = qtyInput ? Math.max(1, parseInt(qtyInput.value) || 1) : 1;
         const total = (qty * PRICE_PER_PACK).toFixed(2);
 
         paypal.Buttons({
             style: { layout: 'vertical', color: 'gold', shape: 'rect', label: 'pay', height: 48 },
+            onInit: function(data, actions) {
+                actions.disable();
+                if (paypalCheck) {
+                    paypalCheck.addEventListener('change', function(e) {
+                        if (e.target.checked) actions.enable();
+                        else actions.disable();
+                    });
+                }
+            },
+            onClick: function() {
+                if (paypalCheck && !paypalCheck.checked) {
+                    const box = paypalCheck.closest('.captcha-container');
+                    box.classList.add('border-red-500');
+                    setTimeout(() => box.classList.remove('border-red-500'), 2000);
+                    showMsg('Please verify you are not a robot.', 'error');
+                }
+            },
             createOrder: (data, actions) => actions.order.create({
                 purchase_units: [{
                     description: `Taprobane Lager Pack ×${qty}`,
@@ -210,6 +240,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ── HELPERS ───────────────────────────────────────────────────────────────
+    function injectCaptcha(containerId, uniquePrefix) {
+        const container = document.getElementById(containerId);
+        if (!container) return null;
+        let captchaBox = document.getElementById(`captcha-box-${uniquePrefix}`);
+        if (!captchaBox) {
+            captchaBox = document.createElement('div');
+            captchaBox.id = `captcha-box-${uniquePrefix}`;
+            captchaBox.className = 'captcha-container flex items-center justify-between p-4 bg-dark-bg border border-white/10 rounded-sm mb-6 transition-colors duration-300';
+            captchaBox.innerHTML = `
+                <div class="flex items-center gap-3">
+                    <input type="checkbox" id="robot-check-${uniquePrefix}" class="w-6 h-6 bg-dark-surface border border-white/20 rounded-sm focus:ring-gold text-gold cursor-pointer accent-gold robot-check gap-2">
+                    <label for="robot-check-${uniquePrefix}" class="text-sm text-gray-300 uppercase tracking-widest cursor-pointer select-none">I'm not a robot</label>
+                </div>
+                <div class="flex flex-col items-center">
+                    <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="reCAPTCHA" class="w-8 h-8 opacity-80 mb-1" onerror="this.style.display='none'">
+                    <span class="text-[8px] text-gray-500 uppercase tracking-wider">reCAPTCHA</span>
+                </div>
+            `;
+            container.parentElement.insertBefore(captchaBox, container);
+        }
+        return captchaBox.querySelector('.robot-check');
+    }
+
     function showSuccessScreen(panelEl) {
         panelEl.innerHTML = `
             <div class="h-1 w-full bg-gradient-to-r from-transparent via-gold to-transparent"></div>

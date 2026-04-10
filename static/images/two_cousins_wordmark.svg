@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="100%" height="100%">
+    <defs>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&amp;family=Inter:wght@400;600&amp;display=swap');
+            .wordmark {
+                font-family: 'Playfair Display', serif;
+                font-size: 28px;
+                font-style: italic;
+                font-weight: 700;
+                fill: #ffffff;
+                transition: all 0.5s ease;
+            }
+            .sub {
+                font-family: 'Inter', sans-serif;
+                font-size: 8px;
+                letter-spacing: 0.35em;
+                fill: #cccccc;
+                text-transform: uppercase;
+            }
+            svg:hover .wordmark {
+                fill: #D4AF37;
+            }
+        </style>
+    </defs>
+    <!-- Background is completely transparent -->
+    <text x="0" y="35" class="wordmark">Two Cousins</text>
+    <text x="2" y="52" class="sub">Culinary Collections</text>
+</svg>
