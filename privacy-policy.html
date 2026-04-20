@@ -1,170 +1,344 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="scroll-smooth">
+  <head>
+    <!-- SEO Meta Tags -->
+    <meta
+      name="keywords"
+      content="Taprobane Lager, Premium Beer, Alberta Beer, Asian Inspired Beer, Two Cousins Culinary Collections, Crisp Beer, Smooth Lager"
+    />
+    <meta property="og:title" content="Taprobane Lager | High-End Excellence" />
+    <meta
+      property="og:description"
+      content="Taprobane Lager - Brewed in Alberta, Inspired by Asia. Smooth, crisp, and refreshing local flavour experience."
+    />
+    <meta
+      property="og:image"
+      content="https://taprobanelager.com/static/images/hero_banner_yellow.jpg"
+    />
+    <meta property="og:url" content="https://taprobanelager.com" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Taprobane Lager | High-End Excellence"
+    />
+    <meta
+      name="twitter:description"
+      content="Taprobane Lager - Brewed in Alberta, Inspired by Asia. Smooth, crisp, and refreshing local flavour experience."
+    />
+    <meta
+      name="twitter:image"
+      content="https://taprobanelager.com/static/images/hero_banner_yellow.jpg"
+    />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Taprobane Lager | Privacy Policy</title>
-    <meta name="description" content="Privacy Policy for Taprobane Lager by Two Cousins Culinary Collections.">
+    <meta
+      name="description"
+      content="Privacy Policy for Taprobane Lager by Two Cousins Culinary Collections."
+    />
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        gold: { DEFAULT: '#D4AF37', light: '#F3E5AB', dark: '#996515' },
-                        red: { brand: '#B91C1C' },
-                        dark: { bg: '#0a0a0a', surface: '#111111' }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        heading: ['Playfair Display', 'serif'],
-                    }
-                }
-            }
-        };
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              gold: { DEFAULT: "#D4AF37", light: "#F3E5AB", dark: "#996515" },
+              red: { brand: "#B91C1C" },
+              dark: { bg: "#0a0a0a", surface: "#111111" },
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              heading: ["Playfair Display", "serif"],
+            },
+          },
+        },
+      };
     </script>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="static/css/style.css">
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="static/css/style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-</head>
 
-<body
-    class="bg-dark-bg text-gray-200 font-sans antialiased overflow-x-hidden selection:bg-gold selection:text-black leading-relaxed">
+    <!-- Meta Pixel Code -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js",
+      );
+      fbq("init", "1234567890");
+      fbq("track", "PageView");
+    </script>
+    <!-- End Meta Pixel Code -->
+  </head>
+
+  <body
+    class="bg-dark-bg text-gray-200 font-sans antialiased overflow-x-hidden selection:bg-gold selection:text-black leading-relaxed"
+  >
+    <!-- Meta Pixel Noscript -->
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=1234567890&ev=PageView&noscript=1"
+    /></noscript>
+
     <div class="noise-overlay"></div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 w-full z-50 transition-all duration-300 py-6 px-6 md:px-12 bg-black/40 backdrop-blur-md border-b border-white/5"
-        id="navbar">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-                                                <!-- Two Cousins Clean Transparent Wordmark -->
-            <a href="index.html" class="flex flex-col justify-center pl-4 md:pl-12 h-[45px] md:h-[60px] opacity-0 animate-[wordmarkFadeIn_1.5s_ease-out_forwards] hover:scale-[1.03] transition-transform duration-500 origin-left group">
-                <style>
-                    @keyframes wordmarkFadeIn {
-                        from { opacity: 0; transform: translateX(-15px); filter: blur(3px); }
-                        to { opacity: 1; transform: translateX(0); filter: blur(0); }
-                    }
-                </style>
-                <div class="flex items-baseline mb-0">
-                    <span class="font-heading font-bold italic tracking-wide text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] leading-none text-[22px] md:text-[30px] group-hover:text-gold transition-colors duration-500">
-                        Two Cousins
-                    </span>
-                </div>
-                <span class="text-gray-300 text-[8px] md:text-[10px] tracking-[0.35em] uppercase mt-1 drop-shadow-md ml-1 font-sans">
-                    Culinary Collections
-                </span>
-            </a>
-            <div class="hidden md:flex items-center space-x-10">
-                <a href="index.html"
-                    class="text-xs font-semibold tracking-[0.15em] uppercase hover:text-gold transition-colors">Home</a>
-                <a href="products.html"
-                    class="text-xs font-semibold tracking-[0.15em] uppercase hover:text-gold transition-colors">The
-                    Beer</a>
-                <a href="about.html"
-                    class="text-xs font-semibold tracking-[0.15em] uppercase hover:text-gold transition-colors">Our
-                    Story</a>
-                <a href="contact.html"
-                    class="text-xs font-semibold tracking-[0.15em] uppercase hover:text-gold transition-colors">Contact</a>
-            </div>
-            <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16">
-                    </path>
-                </svg>
-            </button>
+    <nav
+      class="fixed top-0 left-0 w-full z-50 transition-all duration-300 py-6 px-6 md:px-12 bg-black/40 backdrop-blur-md border-b border-white/5"
+      id="navbar"
+    >
+      <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <!-- Two Cousins Clean Transparent Wordmark -->
+        <a
+          href="index.html"
+          class="flex flex-col justify-center pl-4 md:pl-12 h-[45px] md:h-[60px] opacity-0 animate-[wordmarkFadeIn_1.5s_ease-out_forwards] hover:scale-[1.03] transition-transform duration-500 origin-left group"
+        >
+          <style>
+            @keyframes wordmarkFadeIn {
+              from {
+                opacity: 0;
+                transform: translateX(-15px);
+                filter: blur(3px);
+              }
+
+              to {
+                opacity: 1;
+                transform: translateX(0);
+                filter: blur(0);
+              }
+            }
+          </style>
+          <div class="flex items-baseline mb-0">
+            <span
+              class="font-heading font-bold italic tracking-wide text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] leading-none text-[22px] md:text-[30px] group-hover:text-gold transition-colors duration-500"
+            >
+              Two Cousins
+            </span>
+          </div>
+          <span
+            class="text-gray-300 text-[8px] md:text-[10px] tracking-[0.35em] uppercase mt-1 drop-shadow-md ml-1 font-sans"
+          >
+            Culinary Collections
+          </span>
+        </a>
+        <div class="hidden md:flex items-center space-x-10">
+          <a
+            href="index.html"
+            class="text-xs font-semibold tracking-[0.15em] uppercase hover:text-gold transition-colors"
+            >Home</a
+          >
+          <a
+            href="products.html"
+            class="text-xs font-semibold tracking-[0.15em] uppercase hover:text-gold transition-colors"
+            >The Beer</a
+          >
+          <a
+            href="about.html"
+            class="text-xs font-semibold tracking-[0.15em] uppercase hover:text-gold transition-colors"
+            >Our Story</a
+          >
+          <a
+            href="contact.html"
+            class="text-xs font-semibold tracking-[0.15em] uppercase hover:text-gold transition-colors"
+            >Contact</a
+          >
         </div>
-        <div id="mobile-menu"
-            class="hidden absolute top-full left-0 w-full bg-dark-bg/95 backdrop-blur-md border-t border-gray-800 flex flex-col py-4 shadow-2xl transition-all duration-300">
-            <a href="index.html"
-                class="px-8 py-4 text-sm font-semibold tracking-widest uppercase hover:text-gold transition-colors border-b border-gray-800/50 text-center">Home</a>
-            <a href="products.html"
-                class="px-8 py-4 text-sm font-semibold tracking-widest uppercase hover:text-gold transition-colors border-b border-gray-800/50 text-center">The
-                Beer</a>
-            <a href="about.html"
-                class="px-8 py-4 text-sm font-semibold tracking-widest uppercase hover:text-gold transition-colors border-b border-gray-800/50 text-center">Our
-                Story</a>
-            <a href="contact.html"
-                class="px-8 py-4 text-sm font-semibold tracking-widest uppercase hover:text-gold transition-colors text-center">Contact</a>
-        </div>
+        <button
+          id="mobile-menu-btn"
+          class="md:hidden text-white focus:outline-none"
+        >
+          <svg
+            class="w-8 h-8"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </button>
+      </div>
+      <div
+        id="mobile-menu"
+        class="hidden absolute top-full left-0 w-full bg-dark-bg/95 backdrop-blur-md border-t border-gray-800 flex flex-col py-4 shadow-2xl transition-all duration-300"
+      >
+        <a
+          href="index.html"
+          class="px-8 py-4 text-sm font-semibold tracking-widest uppercase hover:text-gold transition-colors border-b border-gray-800/50 text-center"
+          >Home</a
+        >
+        <a
+          href="products.html"
+          class="px-8 py-4 text-sm font-semibold tracking-widest uppercase hover:text-gold transition-colors border-b border-gray-800/50 text-center"
+          >The Beer</a
+        >
+        <a
+          href="about.html"
+          class="px-8 py-4 text-sm font-semibold tracking-widest uppercase hover:text-gold transition-colors border-b border-gray-800/50 text-center"
+          >Our Story</a
+        >
+        <a
+          href="contact.html"
+          class="px-8 py-4 text-sm font-semibold tracking-widest uppercase hover:text-gold transition-colors text-center"
+          >Contact</a
+        >
+      </div>
     </nav>
 
     <main class="min-h-screen pt-40 pb-20">
-        <section class="max-w-4xl mx-auto px-6 gs-reveal">
-            <h1 class="text-5xl font-heading font-bold text-white mb-6">Privacy Policy</h1>
-            <p class="text-gray-400 mb-12">Last Updated: April 2026</p>
+      <section class="max-w-4xl mx-auto px-6 gs-reveal">
+        <h1 class="text-5xl font-heading font-bold text-white mb-6">
+          Privacy Policy
+        </h1>
+        <p class="text-gray-400 mb-12">Last Updated: April 2026</p>
 
-            <div class="space-y-8 text-gray-300 font-light leading-relaxed">
-                <div>
-                    <h2 class="text-2xl font-heading text-white mb-4">1. Information We Collect</h2>
-                    <p>At Taprobane Lager, operated by Two Cousins Culinary Collections, we collect information that you
-                        voluntarily provide to us when expressing an interest in obtaining information about us or our
-                        products. This includes your name, email address, phone number, and any other details you
-                        provide through our contact forms or checkout process.</p>
-                </div>
-                <div>
-                    <h2 class="text-2xl font-heading text-white mb-4">2. Age Verification</h2>
-                    <p>As a premium beer brand, we are legally required to ensure that our users are of legal drinking
-                        age in their respective regions. Our website utilizes an age gate to verify your age before
-                        granting access to our content. We do not store this age verification data persistently linking
-                        it to your identity, but we do set a local cookie or local storage token to prevent repeated
-                        prompts on the same device.</p>
-                </div>
-                <div>
-                    <h2 class="text-2xl font-heading text-white mb-4">3. How We Use Your Information</h2>
-                    <p>We use the information we collect or receive to facilitate account creation and logon process, to
-                        send you marketing and promotional communications, and to fulfill and manage your orders. Your
-                        data helps us improve our services and your user experience on our platform.</p>
-                </div>
-                <div>
-                    <h2 class="text-2xl font-heading text-white mb-4">4. Sharing Your Information</h2>
-                    <p>We only share information with your consent, to comply with laws, to provide you with services,
-                        to protect your rights, or to fulfill business obligations. We securely process payments through
-                        trusted third-party providers (like Stripe and PayPal) and do not directly store your credit
-                        card details on our servers.</p>
-                </div>
-                <div>
-                    <h2 class="text-2xl font-heading text-white mb-4">5. Cookies and Tracking Technologies</h2>
-                    <p>We may use cookies and similar tracking technologies to access or store information. These are
-                        used primarily for the functionality of our shopping cart, language preferences, and age
-                        verification to ensure a smooth browsing experience.</p>
-                </div>
-                <div>
-                    <h2 class="text-2xl font-heading text-white mb-4">6. Contact Us</h2>
-                    <p>If you have questions or comments about this notice, you may email us at taprobanelager@gmail.com
-                        or by post to our headquarters in Alberta, Canada.</p>
-                </div>
-            </div>
-        </section>
+        <div class="space-y-8 text-gray-300 font-light leading-relaxed">
+          <div>
+            <h2 class="text-2xl font-heading text-white mb-4">
+              1. Information We Collect
+            </h2>
+            <p>
+              At Taprobane Lager, operated by Two Cousins Culinary Collections,
+              we collect information that you voluntarily provide to us when
+              expressing an interest in obtaining information about us or our
+              products. This includes your name, email address, phone number,
+              and any other details you provide through our contact forms or
+              checkout process.
+            </p>
+          </div>
+          <div>
+            <h2 class="text-2xl font-heading text-white mb-4">
+              2. Age Verification
+            </h2>
+            <p>
+              As a premium beer brand, we are legally required to ensure that
+              our users are of legal drinking age in their respective regions.
+              Our website utilizes an age gate to verify your age before
+              granting access to our content. We do not store this age
+              verification data persistently linking it to your identity, but we
+              do set a local cookie or local storage token to prevent repeated
+              prompts on the same device.
+            </p>
+          </div>
+          <div>
+            <h2 class="text-2xl font-heading text-white mb-4">
+              3. How We Use Your Information
+            </h2>
+            <p>
+              We use the information we collect or receive to facilitate account
+              creation and logon process, to send you marketing and promotional
+              communications, and to fulfill and manage your orders. Your data
+              helps us improve our services and your user experience on our
+              platform.
+            </p>
+          </div>
+          <div>
+            <h2 class="text-2xl font-heading text-white mb-4">
+              4. Sharing Your Information
+            </h2>
+            <p>
+              We only share information with your consent, to comply with laws,
+              to provide you with services, to protect your rights, or to
+              fulfill business obligations. We securely process payments through
+              trusted third-party providers (like Stripe and PayPal) and do not
+              directly store your credit card details on our servers.
+            </p>
+          </div>
+          <div>
+            <h2 class="text-2xl font-heading text-white mb-4">
+              5. Cookies and Tracking Technologies
+            </h2>
+            <p>
+              We may use cookies and similar tracking technologies to access or
+              store information. These are used primarily for the functionality
+              of our shopping cart, language preferences, and age verification
+              to ensure a smooth browsing experience.
+            </p>
+          </div>
+          <div>
+            <h2 class="text-2xl font-heading text-white mb-4">6. Contact Us</h2>
+            <p>
+              If you have questions or comments about this notice, you may email
+              us at taprobanelager@gmail.com or by post to our headquarters in
+              Alberta, Canada.
+            </p>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-dark-bg pt-24 pb-12 border-t border-white/5 relative z-10 w-full">
-        <div
-            class="max-w-7xl mx-auto px-6 mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600 gap-4">
-            <p>&copy; 2026 Taprobane Lager. All rights reserved.
-                <span class="mx-2 hidden md:inline">|</span>
-                <a href="privacy-policy.html" class="hover:text-gold transition-colors">Privacy Policy</a>
-                <span class="mx-2 hidden md:inline">|</span>
-                <a href="terms.html" class="hover:text-gold transition-colors">Terms of Conditions</a>
-            </p>
-            <p class="uppercase tracking-widest text-gold/70">Enjoy Responsibly</p>
-        </div>
+    <footer
+      class="bg-dark-bg pt-24 pb-12 border-t border-white/5 relative z-10 w-full"
+    >
+      <div
+        class="max-w-7xl mx-auto px-6 mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600 gap-4"
+      >
+        <p>
+          &copy; 2026 Taprobane Lager. All rights reserved.
+          <span class="mx-2 hidden md:inline">|</span>
+          <a
+            href="privacy-policy.html"
+            class="hover:text-gold transition-colors"
+            >Privacy Policy</a
+          >
+          <span class="mx-2 hidden md:inline">|</span>
+          <a href="terms.html" class="hover:text-gold transition-colors"
+            >Terms of Conditions</a
+          >
+        </p>
+        <p class="uppercase tracking-widest text-gold/70">Enjoy Responsibly</p>
+      </div>
     </footer>
 
     <script src="static/js/main.js"></script>
     <script>
-        gsap.registerPlugin(ScrollTrigger);
-        gsap.utils.toArray('.gs-reveal').forEach(function (elem) {
-            gsap.fromTo(elem, { y: 30, opacity: 0 }, {
-                y: 0, opacity: 1, duration: 1, ease: "power3.out",
-                scrollTrigger: { trigger: elem, start: "top 85%" }
-            });
-        });
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.utils.toArray(".gs-reveal").forEach(function (elem) {
+        gsap.fromTo(
+          elem,
+          { y: 30, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: { trigger: elem, start: "top 85%" },
+          },
+        );
+      });
     </script>
-</body>
-
+  </body>
 </html>
